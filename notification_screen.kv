@@ -1,0 +1,10 @@
+<NotificationScreen>:
+    BoxLayout:
+        orientation: "vertical"
+
+        MDToolbar:
+            title: "Notification"
+            left_action_items: [["chevron-left", lambda x: app.change_screen("main_screen", "right")]]
+
+        ScrollView:
+            MDList:

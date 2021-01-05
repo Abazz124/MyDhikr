@@ -1,0 +1,163 @@
+#:import utils kivy.utils
+<MainScreen>:
+    MDBoxLayout:
+        orientation: 'vertical'
+
+        MDToolbar:
+           # md_bg_color: app.theme_cls.primary_dark\
+            #    if app.theme_cls.theme_style == "Light"\
+             #       else app.theme_cls.primary_dark
+            title: "MyDhikr"
+            right_action_items: [["account-child-circle", lambda x: app.return_empty()]]
+
+        MDBottomNavigation:
+            #panel_color: .2, .2, .2, 1
+            MDBottomNavigationItem:
+                name: "screen_1"
+                icon: "home"
+
+                BoxLayout:
+                    orientation: "vertical"
+
+                    ScrollView:
+                        MDList:
+                            spacing: dp(10)
+                            padding: dp(20)
+                            MDLabel:
+                                id: streak
+                                text: "STREAK"
+                                halign: "center"
+                                font_style: "H4"
+                                theme_text_color: "Primary"
+
+                            TwoLineAvatarIconListItem:
+                                text: "SubhanAllah"
+                                secondary_text: "Total = " + root.subhan_Allah_count_text
+                            TwoLineAvatarIconListItem:
+                                text: "Alhamdulillah"
+                                secondary_text: "Total = " + root.alhamdulillah_count_text
+                            TwoLineAvatarIconListItem:
+                                text: "AllahuAkbar"
+                                secondary_text: "Total = " + root.allahu_akbar_count_text
+
+            MDBottomNavigationItem: # dhikr page
+                name: "screen_2"
+                icon: "book"
+
+                BoxLayout:
+                    orientation: "vertical"
+
+                    MDTabs:
+                        id: dhikr_tabs
+                        on_tab_switch: app.on_tab_switch()
+                        lock_swiping: "False"
+                        md_bg_color: app.theme_cls.primary_dark
+                        Tab:
+                            text: "SubhanAllah"
+                            BoxLayout:
+                                orientation: "vertical"
+
+                                MDLabel:
+                                    text: "SubhanAllah"
+                                    halign: "center"
+                                    valign: "center"
+                                    theme_text_color: "ContrastParentBackground"
+
+                                MDIconButton:
+                                    id: subhan_Allah
+                                    icon: "language-python"
+                                    elevation_normal: 12
+                                    user_font_size: "50sp"
+                                    on_release: root.subhan_Allah_counting()
+
+                                MDLabel:
+                                    id: subhan_Allah_label
+                                    text: root.subhan_Allah_count_text
+                                    halign: "center"
+                                    valign: "center"
+                                    theme_text_color: "ContrastParentBackground"
+
+                        Tab:
+                            text: "Alhamdulillah"
+                            BoxLayout:
+                                orientation: "vertical"
+
+                                MDLabel:
+                                    text: "Alhamdulillah"
+                                    halign: "center"
+                                    valign: "center"
+                                    theme_text_color: "ContrastParentBackground"
+
+                                MDIconButton:
+                                    id: alhamdulillah
+                                    icon: "language-python"
+                                    elevation_normal: 12
+                                    user_font_size: "50sp"
+                                    on_release: root.alhamdulillah_counting()
+
+                                MDLabel:
+                                    id: alhamdulillah_label
+                                    text: root.alhamdulillah_count_text
+                                    halign: "center"
+                                    valign: "center"
+                                    theme_text_color: "ContrastParentBackground"
+
+                        Tab:
+                            text: "AllahuAkbar"
+                            BoxLayout:
+                                orientation: "vertical"
+
+                                MDLabel:
+                                    text: "AllahuAkbar"
+                                    halign: "center"
+                                    valign: "center"
+                                    theme_text_color: "ContrastParentBackground"
+
+                                MDIconButton:
+                                    id: allahu_akbar
+                                    icon: "language-python"
+                                    elevation_normal: 12
+                                    user_font_size: "50sp"
+                                    on_release: root.allahu_akbar_counting()
+
+                                MDLabel:
+                                    id: allahu_akbar_label
+                                    text: root.allahu_akbar_count_text
+                                    halign: "center"
+                                    valign: "center"
+                                    theme_text_color: "ContrastParentBackground"
+
+            MDBottomNavigationItem: # settings screen
+                name: "screen_3"
+                icon: "menu"
+
+                ScrollView:
+                    #orientation: "vertical"
+                    MDList:
+                        OneLineAvatarIconListItem:
+                            text: "Language"
+                            on_release:
+                                print(app.change_screen("language_screen", "left"))
+                            IconRightWidget:
+                                icon: "chevron-right"
+
+
+                        TwoLineAvatarIconListItem:
+                            text: "Notification"
+                            secondary_text: app.fullTime_text
+                            on_release:
+                                app.show_timePicker()
+                            IconRightWidget:
+                                icon: "chevron-right"
+
+                        OneLineAvatarIconListItem:
+                            text: "Theme"
+                            on_release:
+                                print(app.change_screen("theme_screen", "left"))
+                            IconRightWidget:
+                                icon: "chevron-right"
+
+
+<Tab>:
+    MDLabel:
+        id: label

@@ -1,0 +1,16 @@
+<ThemeScreen>:
+    BoxLayout:
+        orientation: "vertical"
+
+        MDToolbar:
+            title: "Theme"
+            left_action_items: [["chevron-left", lambda x: app.change_screen("main_screen", "right")]]
+
+        ScrollView:
+            MDList:
+                OneLineListItem:
+                    text: "Light"
+                    on_release: app.light_theme()
+                OneLineListItem:
+                    text: "Dark"
+                    on_release: app.dark_theme()

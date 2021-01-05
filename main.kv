@@ -1,0 +1,19 @@
+#:include kv/main_screen.kv
+#:include kv/language_screen.kv
+#:include kv/notification_screen.kv
+#:include kv/theme_screen.kv
+BoxLayout:
+    ScreenManager:
+        id: screen_manager
+        MainScreen:
+            id: main_screen
+            name: "main_screen"
+        LanguageScreen:
+            id: language_screen
+            name: "language_screen"
+        NotificationScreen:
+            id: notification_screen
+            name: "notification_screen"
+        ThemeScreen:
+            id: theme_screen
+            name: "theme_screen"
